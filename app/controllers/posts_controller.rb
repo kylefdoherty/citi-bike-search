@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
 
   get '/' do #index
-    # what data does this need?
     @posts = Post.all
     erb :"posts/index"
   end
@@ -30,6 +29,7 @@ class PostsController < ApplicationController
 
   post '/posts' do
     @post = Post.new(params[:post])
+    
     if @post.save 
       redirect to("/posts/#{@post.id}")
     else

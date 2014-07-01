@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
   get '/posts/new' do
     @post = Post.new
-    
+
     erb :"posts/new"
   end
 
@@ -18,7 +18,15 @@ class PostsController < ApplicationController
     erb :"posts/show"
   end
 
+  get '/posts/:id/edit' do
+    @post = Post.find(params[:id])
 
+    erb :"posts/edit"
+  end
+
+  patch '/posts/:id' do
+    raise params.inspect
+  end
 
   post '/posts' do
     @post = Post.new(params[:post])

@@ -1,0 +1,6 @@
+<h1>Stations by <%= @location.address %></h1>
+<ul>
+<% for station in @stations %>
+  <li><%= station.name %></li>
+<% end %>
+</ul>

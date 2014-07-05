@@ -1,7 +1,12 @@
 <h1>Citi Bike Stations</h1>
-
+<form action="/results" method="post">
+    <label for="location">Enter your location</label>
+    <input type="text" id="location" name="location">
+    <input type="submit" value="submit">
+</form>
 <ol>
 <% @stations.each do |station| %>
   <li><a href="/stations/<%= station.id %>"><%= station.name %></a></li>
 <% end %>
 </ol>
+

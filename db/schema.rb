@@ -11,18 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140701182833) do
+ActiveRecord::Schema.define(version: 20140705172129) do
 
-  create_table "authors", force: true do |t|
-    t.string "name"
-  end
-
-  create_table "posts", force: true do |t|
-    t.string   "title"
-    t.string   "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "author_id"
+  create_table "stations", force: true do |t|
+    t.string  "name"
+    t.integer "station_id"
+    t.float   "latitude"
+    t.float   "longitude"
+    t.integer "total_docks"
   end
 
 end

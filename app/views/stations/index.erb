@@ -1,0 +1,7 @@
+<h1>Citi Bike Stations</h1>
+
+<ol>
+<% @stations.each do |station| %>
+  <li><a href="/stations/<%= station.id %>"><%= station.name %></a></li>
+<% end %>
+</ol>

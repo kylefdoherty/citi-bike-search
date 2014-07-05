@@ -9,6 +9,8 @@ gem 'sqlite3'
 gem 'thin'
 gem 'shotgun'
 gem 'pry'
+gem 'httparty'
+gem "geocoder"
 
 group :test do
   gem 'rspec'

@@ -1,4 +1,5 @@
 require_relative '../../config/environment.rb'
+require_relative 'json_parser'
 require 'geocoder'
 
 class Station < ActiveRecord::Base
@@ -27,7 +28,7 @@ class Station < ActiveRecord::Base
     parser = JSONParser.new("http://www.citibikenyc.com/stations/json")
     stations = parser.run
     stations.each do |station|
-      s = Station.find_by(station_id: station[:id])
+      s = Station.find_by(station_id: station['id'])
       s.available_docks = station[:availableDocks]
       s.available_bikes = station[:availableBikes]
       s.status = station[:statusValue]

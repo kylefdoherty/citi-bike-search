@@ -1,6 +1,6 @@
 <h1>Stations by <%= @location.address %></h1>
-<ul>
+<ol>
 <% for station in @stations %>
-  <li><%= station.name %></li>
+  <li><a href="/stations/<%= station.id %>"><%= station.name %> -- <%= station.distance.round(2) %> miles</a></li>
 <% end %>
-</ul>
+</ol>

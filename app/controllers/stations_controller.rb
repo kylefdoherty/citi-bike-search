@@ -7,9 +7,10 @@ class StationsController < ApplicationController
   end 
 
   get '/stations/:id' do
-    # Station.refresh_bike_count 
     @station = Station.find(params[:id])
-
+    @current_data = Station.refresh_bike_count
+    @current_station_data = @current_data.select {|s| s['id'] == @station.station_id}.first
+    # binding.pry
     erb :"stations/show"
   end 
 

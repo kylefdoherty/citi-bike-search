@@ -1,19 +1,19 @@
 <h1><%= @station.name %></h1>
 <p>
-  Station ID: <%= @station.station_id %>
+  <strong>Station ID:</strong> <%= @station.station_id %>
 </p>
 <p>
-  Total Docks: <%= @station.total_docks %>
-</p>
-
-<p>
-  Status: <%= @station.status %>
+  <strong>Total Docks:</strong> <%= @station.total_docks %>
 </p>
 
 <p>
- Available Bikes: <%= @station.available_bikes %>
+  <strong>Status:</strong> <%= @current_station_data['statusValue'] %>
 </p>
 
 <p>
-  Available Docks: <%= @station.available_docks %>
+ <strong>Available Bikes:</strong> <%= @current_station_data['availableBikes'] %>
+</p>
+
+<p>
+  <strong>Available Docks:</strong> <%= @current_station_data['availableDocks'] %>
 </p>

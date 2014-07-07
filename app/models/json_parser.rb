@@ -1,5 +1,6 @@
 require_relative "station_builder"
 require_relative "station"
+require 'httparty'
 
 
 require_relative '../../config/environment'

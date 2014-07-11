@@ -1,6 +1,21 @@
-<h1>Stations by <%= @location.address %></h1>
-<ol>
-<% for station in @stations %>
-  <li><a href="/stations/<%= station.id %>"><%= station.name %> -- <%= station.distance.round(2) %> miles</a></li>
-<% end %>
-</ol>
+<h1>Stations Nearest Your Start and End Locations</h1>
+<h2>Start: <%= @start.address %> &amp End: <%= @end.address %></h2> 
+
+<div id="stations">
+  <div id="station">
+    <h3>Start Station:</h3>
+    <p>Available Bikes: <%= @start_station_data['availableBikes'] %></p>
+    <p>Distance from start location: <%= @start_stations.distance.round(2) %> miles</p>
+  </div>
+  <div id="station">
+    <h3>End Station:</h3>
+    <p>Available Docks: <%= @end_station_data['availableDocks'] %></p>
+    <p>Distance from end location: <%= @end_stations.distance.round(2) %> miles</p>
+  </div>
+</div>
+
+ 
+
+
+
+<!-- stick each station in a table with linked name, miles to, and link to get directions to that station from your current location  -->

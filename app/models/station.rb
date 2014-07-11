@@ -23,17 +23,22 @@ class Station < ActiveRecord::Base
     end 
   end 
 
-  def self.refresh_bike_count
+  def refresh_bike_count
     # binding.pry
     parser = JSONParser.new("http://www.citibikenyc.com/stations/json")
     stations = parser.run
     stations.each do |station|
-      s = Station.find_by(station_id: station['id'])
+      s = Station.new
       s.available_docks = station[:availableDocks]
       s.available_bikes = station[:availableBikes]
       s.status = station[:statusValue]
     end
 
   end
+
+  def current_station_data
+    # binding.pry
+    refresh_bike_count.select {|s| s['id'] == self.station_id}.first
+  end 
 
 end

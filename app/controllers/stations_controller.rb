@@ -45,14 +45,33 @@ class StationsController < ApplicationController
     erb :'stations/results'
   end
 
-  post '/directions/:id' do 
+ 
+
+
+
+# {"locations"=>
+#   [{"start"=>"11217",
+#     "end"=>"11 broadway ny",
+#     "start_station"=>"Dean St & 4 Ave",
+#     "end_station"=>"Broadway & Battery Pl"}]
+
+  post '/directions' do 
     # binding.pry
-    @start = params[:location]
-    @station = Station.find(params[:id])
+    @start = params[:locations][:start]
+    @end = params[:locations][:end]
+    @start_station = params[:locations][:start_station]
+    @end_station = params[:locations][:end_station]
 
     #get the station so it can be inserted into the end point for directions 
     erb :'stations/directions'
   end 
+
+
+
+
+
+
+
 
 
 

@@ -82,20 +82,20 @@ function calcRoute() {
   //gets the 'start' element i.e. input for start location 
   var start = "<%= @start %>";
   //gets the 'end' element i.e. input for the end location 
-  var end = "<%= "#{@station.name} New York, NY" %>";
+  var end = "<%= @end %>";
   //puts start and end in hash as origin & destination along with the travelMode
 // var json = <%= @json || 'null' %>;
   // create empty array waypts
 
   console.log(start)
   console.log(end)
-  // var waypts = [];
+  var waypts = [];
 
-  // var waypoint1 = document.getElementById('waypoint1').value;
-  // var waypoint2 = document.getElementById('waypoint2').value;
+  var waypoint1 = "<%= @start_station %>"
+  var waypoint2 = "<%= @end_station %>"
 
-  // waypts.push({location:waypoint1,stopover:true});
-  // waypts.push({location:waypoint2,stopover:true})
+  waypts.push({location:waypoint1,stopover:true});
+  waypts.push({location:waypoint2,stopover:true});
 
   // console.log(waypts)
   // console.log(start)
@@ -106,8 +106,8 @@ function calcRoute() {
   var request = {
     origin: start,
     destination: end,
-    // waypoints: waypts,
-    // optimizeWaypoints: true,
+    waypoints: waypts,
+    optimizeWaypoints: true,
     travelMode: google.maps.TravelMode.WALKING
     //sets the mode of transportation 
   };
@@ -142,8 +142,8 @@ $(document).ready(function(){
  
   </head>
   <body>
-    <h1> Location: <%= @start %></h1>
-    <h1> Station: <%= @station.name %></h1>
+    <h1> Start: <%= @start %></h1>
+    <h1> End: <%= @end %></h1>
     <div id="control">
        <!-- <input type="button" value="Search" onclick="calcRoute();"> -->
     </div>

@@ -12,6 +12,14 @@
     <p>Available Docks: <%= @end_station_data['availableDocks'] %></p>
     <p>Distance from end location: <%= @end_stations.distance.round(2) %> miles</p>
   </div>
+
+  <form action="/directions" method="POST">
+  <input type="hidden" name="[locations][start]" value="<%= @start.address %>" />
+  <input type="hidden" name="[locations][end]" value="<%= @end.address %>" />
+  <input type="hidden" name="[locations][start_station]" value="<%= @start_stations.name %>" />
+  <input type="hidden" name="[locations][end_station]" value="<%= @end_stations.name %>" />
+  <input type="submit" value="Get Directions">
+  </form>
 </div>
 
  

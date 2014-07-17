@@ -4,8 +4,7 @@ require 'geocoder'
 
 class StationRefresher
 
-  def refresh_bike_count
-    # binding.pry
+  def self.refresh_bike_count
     parser = JSONParser.new("http://www.citibikenyc.com/stations/json")
     stations = parser.run
     stations.each do |station|
@@ -16,9 +15,8 @@ class StationRefresher
     end
   end
 
-  def self.current_station_data
-    # binding.pry
-    refresh_bike_count.select {|s| s['id'] == self.station_id}.first
+  def self.current_station_data(station_id)
+    refresh_bike_count.select {|s| s['id'] == station_id}.first
   end 
 
 

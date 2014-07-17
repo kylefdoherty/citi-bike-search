@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Displaying text directions with <code>setPanel()</code></title>  
+    <style>
+     
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+      #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+
+ 
+      #directions-panel {
+        height: 100%;
+        float: right;
+        width: 350px;
+        overflow: auto;
+      }
+
+      #map-canvas {
+        margin-right: 350px;
+      }
+
+
+      @media print {
+        #map-canvas {
+          height: 500px;
+          margin: 0;
+        }
+
+        #directions-panel {
+          float: none;
+          width: auto;
+        }
+      }
+
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+    // sets a funtion called initialize 
+  var directionsDisplay1;
+     var directionsDisplay2;
+    var directionsDisplay3;
+
+      var directionsService = new google.maps.DirectionsService();
+
+
+      function initialize() {
+        
+        //set map
+        var mapOptions = {
+          zoom: 7,
+          center: new google.maps.LatLng(40.7903, -73.9597)
+        };
+        
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+        
+        
+        //set diretionsDisplay 1 & 2 with map 
+        directionsDisplay1 = new google.maps.DirectionsRenderer();
+        directionsDisplay2 = new google.maps.DirectionsRenderer();
+        directionsDisplay3 = new google.maps.DirectionsRenderer();
+
+      
+        directionsDisplay1.setMap(map);
+        directionsDisplay1.setPanel(document.getElementById('directions-panel'));
+        
+        directionsDisplay2.setMap(map);
+        directionsDisplay2.setPanel(document.getElementById('directions-panel'));
+        
+        directionsDisplay3.setMap(map);
+        directionsDisplay3.setPanel(document.getElementById('directions-panel'));
+
+
+
+
+      } //end of initialize method
+
+      
+      // calcRoute() method to, used guessed it, calculat the route
+      function calcRoute() {
+
+        //130 Court St
+
+        var route1 = {
+          origin: '<%= @start %>',
+          destination: '<%= @start_station %>',
+          travelMode: google.maps.TravelMode.WALKING 
+        };
+        
+        var route2 = {
+          origin: '<%= @start_station %>',
+          destination: '<%= @end_station %>',
+          travelMode: google.maps.TravelMode.BICYCLING 
+        };
+        
+        
+        var route3 = {
+          origin: '<%= @end_station %>',
+          destination: '<%= @end %>',
+          travelMode: google.maps.TravelMode.WALKING 
+        };
+        
+        
+        
+        
+       /* var start = '11217';
+        var end = '11 broadway ny';*/
+
+        // sets a object literal with an origin of start, destination of end and the travel mode 
+/*        var request = {
+          origin: start,
+          destination: end,
+          travelMode: google.maps.TravelMode.WALKING
+        };
+*/
+        // this gives the directionsService var a route of the request object literal, and a callback method that executes upon the receipt of the response from directionsService.  Learn more about callbacks here, http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/
+
+        directionsService.route(route1, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay1.setDirections(response);
+          }
+        });
+        
+        directionsService.route(route2, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay2.setDirections(response);
+          }
+        });
+        
+        directionsService.route(route3, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay3.setDirections(response);
+          }
+        });
+      }
+
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+     google.maps.event.addDomListener(window, 'load', calcRoute);
+
+
+</script>
+ 
+</head>
+  <body>
+
+    <div id="directions-panel"></div>
+    <div id="map-canvas"></div>
+  </body>
+</html>
+
+

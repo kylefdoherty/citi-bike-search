@@ -22,7 +22,7 @@ class StationsController < ApplicationController
     # start stations 
     if params[:start].present?
         @start_stations = Station.near(@start, 1).first
-        @start_station_data = @start_stations.current_station_data
+        @start_station_data = .current_station_data
         # if @stations.length > 5
         #     @stations = @stations[0..2]
         # end

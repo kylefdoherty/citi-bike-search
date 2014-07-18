@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140705192514) do
 
   create_table "stations", force: true do |t|
     t.string  "name"
+    t.string  "address"
     t.integer "station_id"
     t.float   "latitude"
     t.float   "longitude"

@@ -1,6 +1,44 @@
-<h1>Stations by <%= @location.address %></h1>
-<ul>
-<% for station in @stations %>
-  <li><%= station.name %></li>
-<% end %>
-</ul>
+<h1>Stations Nearest Your Start and End Locations</h1>
+<h2>Start: <%= @start.address %> &amp End: <%= @end.address %></h2> 
+
+<div id="stations">
+ 
+
+    <table>
+      <tr>
+        <td>
+           <div id="station">
+             <h3>Start Station:</h3>
+                <p>Available Bikes: <%= @start_station_data['availableBikes'] %></p>
+                <p>Distance from start location: <%= @start_stations.distance.round(2) %> miles</p>
+            </div>
+        </td>
+
+        <td>
+          <div id="station">
+            <h3>End Station:</h3>
+            <p>Available Docks: <%= @end_station_data['availableDocks'] %></p>
+            <p>Distance from end location: <%= @end_stations.distance.round(2) %> miles</p>
+          </div>
+        </td>
+
+        <td>
+            <form action="/directions" method="POST">
+            <input type="hidden" name="[locations][start]" value="<%= @start.address %>" />
+            <input type="hidden" name="[locations][end]" value="<%= @end.address %>" />
+            <input type="hidden" name="[locations][start_station]" value="<%= @start_stations.name %>" />
+            <input type="hidden" name="[locations][end_station]" value="<%= @end_stations.name %>" />
+            <input type="submit" value="Get Directions">
+            </form>
+        </td>
+      </tr>
+
+
+
+</div>
+
+ 
+
+
+
+<!-- stick each station in a table with linked name, miles to, and link to get directions to that station from your current location  -->

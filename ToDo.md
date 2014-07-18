@@ -1,12 +1,23 @@
 Technical Problems 
 
-- logic for no bikes 
+######
+- change form to have radio buttons
 
-- logic bike stations 
+- add static map for search page
 
 - handle errors for incorrect inputs 
 
 - what if no stations within certain radius 
+
+
+
+
+#########
+- logic for no bikes 
+
+- logic bike stations 
+
+
 
 
 Front End 

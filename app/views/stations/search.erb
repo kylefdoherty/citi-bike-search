@@ -1,0 +1,19 @@
+<h1>Stations Nearest <%= @location.address %></h1>
+
+<div id="stations">
+     
+
+    <table>
+      <tr>
+        <td>
+           <div id="station">
+        <% @final_stations.each do |station| %>
+             <h3><%= station[0].name %>:</h3>
+                <p>Available Bikes: <%= station[1]['availableBikes'] %></p>
+                <p>Available Docks: <%= station[1]['availableDocks'] %></p> 
+                <p>Distance from your location: <%= station[0].distance.round(2) %> miles</p>
+            </div>
+        </td>
+        <% end %>
+
+    </table>

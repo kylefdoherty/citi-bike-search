@@ -1,3 +1,4 @@
+<% require 'pry' %>
 <h1>Stations Nearest Your Start and End Locations</h1>
 <h2>Start: <%= @start.address %> &amp End: <%= @end.address %></h2> 
 
@@ -8,26 +9,36 @@
       <tr>
         <td>
            <div id="station">
-             <h3>Start Station:</h3>
-                <p>Available Bikes: <%= @start_station_data['availableBikes'] %></p>
-                <p>Distance from start location: <%= @start_stations.distance.round(2) %> miles</p>
+
+             <form action="/directions" method="POST">
+              <h3>Start Stations:</h3>
+        <% @final_start_stations.each do |start_station| %>
+                <input type="radio" name="[locations][start_station]" value="<%= start_station[0].name %>"><p>Location: <%= start_station[0].name %><br>
+                <p>Location: <%= start_station[0].name %>
+                <p>Available Bikes: <%= start_station[1]['availableBikes'] %></p>
+                <p>Distance from start location: <%= start_station[0].distance.round(2) %> miles</p>
             </div>
         </td>
+        <% end %>
 
         <td>
           <div id="station">
             <h3>End Station:</h3>
-            <p>Available Docks: <%= @end_station_data['availableDocks'] %></p>
-            <p>Distance from end location: <%= @end_stations.distance.round(2) %> miles</p>
+        <% @final_end_stations.each do |end_station| %>
+             <input type="radio" name="[locations][end_station]" value="<%= end_station[0].name %>"><p>Location: <%= end_station[0].name %><br>
+            <p>Station: <%= end_station[0].name %>
+            <p>Available Docks: <%= end_station[1]['availableDocks'] %></p>
+            <p>Distance from end location: <%= end_station[0].distance.round(2) %> miles</p>
           </div>
+          <% end %>
         </td>
 
         <td>
-            <form action="/directions" method="POST">
+           
             <input type="hidden" name="[locations][start]" value="<%= @start.address %>" />
             <input type="hidden" name="[locations][end]" value="<%= @end.address %>" />
-            <input type="hidden" name="[locations][start_station]" value="<%= @start_stations.name %>" />
-            <input type="hidden" name="[locations][end_station]" value="<%= @end_stations.name %>" />
+ <!--            <input type="hidden" name="[locations][start_station]" value="<%= @start_stations.name %>" />
+            <input type="hidden" name="[locations][end_station]" value="<%= @end_stations.name %>" /> -->
             <input type="submit" value="Get Directions">
             </form>
         </td>

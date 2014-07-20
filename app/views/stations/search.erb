@@ -60,32 +60,46 @@
   </head>
   <body>
   <div class="container">
-  <h1>Stations Nearest <%= @location.address %></h1>
+  <h1 style="margin-bottom: 50px;">Stations Nearest <%= @location.address %></h1>
 
-  <div id="stations">
-     
-
-    <table>
-      <tr>
-        <td>
-           <div id="station">
-        <% @final_stations.each do |station| %>
-             <h3><%= station[2] + " - " + station[0].name %>:</h3>
-                <p>Available Bikes: <%= station[1]['availableBikes'] %></p>
-                <p>Available Docks: <%= station[1]['availableDocks'] %></p> 
-                <p>Distance from your location: <%= station[0].distance.round(2) %> miles</p>
-            </div>
-        </td>
-        <% end %>
-
-
-
-
-    </table>
-  </div>
     <div class="jumbotron">
       <div id="map-canvas"></div>
     </div>
+
+        <% @final_stations.each do |station| %>
+          <div class="col-sm-4">
+
+            <div class="panel panel-default">
+                  <!-- Default panel contents -->
+                  <div class="panel-heading">
+                    <%= station[2] + " - " + station[0].name %>
+                  </div>
+                  <div class="panel-body">
+                 
+
+                  <!-- Table -->
+                  <table class="table">
+                    <tr>
+                      <td>Available Bikes:</td>
+                      <td><%= station[1]['availableBikes'] %></td>
+                      
+                    </tr>
+                    <tr>
+                      <td>Available Docks:</td>
+                      <td><%= station[1]['availableDocks'] %></td>
+                      
+                    </tr>
+                    <tr>
+                      <td>Distance from your location:</td>
+                      <td><%= station[0].distance.round(2) %> miles</td>
+                    </tr>
+                  </table>
+               </div><!-- end panel body -->
+            </div><!-- end panel -->
+          </div><!--end column -->
+        <% end %>
+
+
   </div> <!--end container -->
   </body>
 </html>

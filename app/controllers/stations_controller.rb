@@ -80,7 +80,7 @@ class StationsController < ApplicationController
         redirect to("/index") #give an error that you must give a start location 
     end
 
-    erb :'stations/search', :layout => :directions_layout
+    erb :'stations/search', :layout => :search_layout
   end
 
 

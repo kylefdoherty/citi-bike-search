@@ -53,7 +53,8 @@ class StationsController < ApplicationController
     @start_station = params[:locations][:start_station]
     @end_station = params[:locations][:end_station]
 
-    erb :'stations/directions'
+    # erb :'stations/directions'
+    erb :'stations/directions', :layout => :directions_layout
   end 
 
   post '/search' do

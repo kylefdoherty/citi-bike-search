@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Displaying text directions with <code>setPanel()</code></title>  
+    <title>Displaying text directions with <code>setPanel()</code></title><!-- <link href="stylesheets/bootstrap.min.css" rel="stylesheet" media="screen"> -->
     <style>
      
       html, body, #map-canvas {
@@ -28,6 +28,7 @@
         float: right;
         width: 350px;
         overflow: auto;
+        background: "#fff"
       }
 
       #map-canvas {
@@ -51,11 +52,11 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script>
     // sets a funtion called initialize 
-  var directionsDisplay1;
-     var directionsDisplay2;
-    var directionsDisplay3;
+    var directionsDisplay1,
+        directionsDisplay2,
+        directionsDisplay3;
 
-      var directionsService = new google.maps.DirectionsService();
+    var directionsService = new google.maps.DirectionsService();
 
 
       function initialize() {
@@ -71,28 +72,45 @@
         
         
         //set diretionsDisplay 1 & 2 with map 
-        directionsDisplay1 = new google.maps.DirectionsRenderer();
-        directionsDisplay2 = new google.maps.DirectionsRenderer();
-        directionsDisplay3 = new google.maps.DirectionsRenderer();
+        directionsDisplay1 = new google.maps.DirectionsRenderer({
+          map               : map,
+          preserveViewport  : true,
+           suppressMarkers  : true,
+          polylineOptions   : {strokeColor:'#C409D9',
+                             strokeOpacity: .7,
+                             strokeWeight: 5}
+        });
+
+        directionsDisplay2 = new google.maps.DirectionsRenderer({
+          map               : map,
+          preserveViewport  : true,
+           suppressMarkers  : true,
+          polylineOptions   : {strokeColor:'#FF9C0F',
+                             strokeOpacity: .7,
+                             strokeWeight: 5}
+        });
+
+        directionsDisplay3 = new google.maps.DirectionsRenderer({
+          map               : map,
+          preserveViewport  : true,
+           suppressMarkers  : true,
+          polylineOptions   : {strokeColor:'#C409D9',
+                             strokeOpacity: .7,
+                             strokeWeight: 5}
+        });
 
       
-        directionsDisplay1.setMap(map);
-        directionsDisplay1.setPanel(document.getElementById('directions-panel'));
-        
-        directionsDisplay2.setMap(map);
-        directionsDisplay2.setPanel(document.getElementById('directions-panel'));
-        
-        directionsDisplay3.setMap(map);
-        directionsDisplay3.setPanel(document.getElementById('directions-panel'));
-
-
-
+        directionsDisplay1.setPanel(document.getElementById('directions1'));
+        directionsDisplay2.setPanel(document.getElementById('directions2'));
+        directionsDisplay3.setPanel(document.getElementById('directions3'));
 
       } //end of initialize method
 
       
       // calcRoute() method to, used guessed it, calculat the route
       function calcRoute() {
+
+
 
         //130 Court St
 
@@ -144,11 +162,15 @@
         
         directionsService.route(route3, function(response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
+            console.log(route3.destination);
+            
             directionsDisplay3.setDirections(response);
-            map.setZoom(8);
           }
         });
       }
+
+
+
 
       // if (status == google.maps.GeocoderStatus.OK) {
       // // Change the center and zoom of the map
@@ -156,17 +178,26 @@
       // map.setZoom(10);
 
 
-      google.maps.event.addDomListener(window, 'load', initialize);
-     google.maps.event.addDomListener(window, 'load', calcRoute);
+    google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'load', calcRoute);
 
 
 </script>
  
 </head>
+
+
   <body>
 
-    <div id="directions-panel"></div>
-    <div id="map-canvas"></div>
+
+    <div id="directions-panel" style="background:#fff; ">
+      <div id="directions1"></div>
+      <div id="directions2"></div>
+      <div id="directions3"></div>
+    </div>
+    <div id="map-canvas">
+    </div>
+
   </body>
 </html>
 

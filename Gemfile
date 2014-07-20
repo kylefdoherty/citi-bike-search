@@ -11,6 +11,7 @@ gem 'shotgun'
 gem 'pry'
 gem 'httparty'
 gem "geocoder"
+gem "gon-sinatra"
 
 group :test do
   gem 'rspec'

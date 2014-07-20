@@ -1,6 +1,68 @@
-<h1>Stations Nearest <%= @location.address %></h1>
 
-<div id="stations">
+<%= include_gon %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+
+    var mapCoors = gon.station_coors;
+    var searchLocation = gon.search_location;
+
+    function initialize() {
+
+      var  coorsFinal = [];
+      var searchLocationGoogle = new google.maps.LatLng(searchLocation["latitude"], searchLocation["longitude"]);
+
+      for(var i=0; i<mapCoors.length; i++){
+        var myLatlng = new google.maps.LatLng(mapCoors[i][0],mapCoors[i][1]);
+        coorsFinal.push(myLatlng);
+      };
+
+      
+      var mapOptions = {
+        zoom: 15,
+        center: searchLocationGoogle
+      }
+      var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+      var locationMarker = new google.maps.Marker({
+          position: searchLocationGoogle,
+          map: map,
+          title: 'Your Location',
+      });
+
+    for (i = 1; i <= 5; i++) {
+      var letter = String.fromCharCode("A".charCodeAt(0) + i - 1);
+
+      var marker = new google.maps.Marker({
+          position: coorsFinal[i-1],
+          map: map,
+          icon: "http://maps.google.com/mapfiles/marker" + letter + ".png"
+      });
+    }
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+
+  <h1>Stations Nearest <%= @location.address %></h1>
+
+  <div id="stations">
      
 
     <table>
@@ -8,7 +70,7 @@
         <td>
            <div id="station">
         <% @final_stations.each do |station| %>
-             <h3><%= station[0].name %>:</h3>
+             <h3><%= station[2] + " - " + station[0].name %>:</h3>
                 <p>Available Bikes: <%= station[1]['availableBikes'] %></p>
                 <p>Available Docks: <%= station[1]['availableDocks'] %></p> 
                 <p>Distance from your location: <%= station[0].distance.round(2) %> miles</p>
@@ -16,4 +78,13 @@
         </td>
         <% end %>
 
+
+
+
     </table>
+  </div>
+
+    <div id="map-canvas"></div>
+  </body>
+</html>
+

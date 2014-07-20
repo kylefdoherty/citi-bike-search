@@ -1,50 +1,86 @@
-
-<% require 'pry' %>
 <h1>Stations Nearest Your Start and End Locations</h1>
-<h2>Start: <%= @start.address %> &amp End: <%= @end.address %></h2> 
+<!-- <h2>Start: <%= @start.address %> &amp End: <%= @end.address %></h2>  -->
 
-    <table>
-      <tr>
-        <td>
-           <div id="station">
+  <div class="row">
+
+    <!-- Start Stations Begins -->
+    <div class="col-md-6">
+       
 
              <form action="/directions" method="POST">
               <h3>Start Stations:</h3>
         <% @final_start_stations.each do |start_station| %>
-                <input type="radio" name="[locations][start_station]" value="<%= start_station[0].name %>"><p>Location: <%= start_station[0].name %><br>
-                <p>Location: <%= start_station[0].name %>
-                <p>Available Bikes: <%= start_station[1]['availableBikes'] %></p>
-                <p>Distance from start location: <%= start_station[0].distance.round(2) %> miles</p>
-            </div>
-        </td>
+
+        <div class="panel panel-default">
+              <!-- Default panel contents -->
+              <div class="panel-heading"><input type="radio" name="[locations][start_station]" value="<%= start_station[0].name %>">&nbsp; Location: <%= start_station[0].name %>
+              </div>
+              <div class="panel-body">
+             
+
+              <!-- Table -->
+              <table class="table">
+                <tr>
+                  <td>Available Bikes:</td>
+                  <td><%= start_station[1]['availableBikes'] %></td>
+                  
+                </tr>
+                <tr>
+                  <td>Distance from start location:</td>
+                  <td><%= start_station[0].distance.round(2) %> miles</td>
+                </tr>
+              </table>
+           </div><!-- end panel body -->
+        </div><!-- end panel -->
+
         <% end %>
+    </div><!-- end col-sm-4 -->
 
-        <td>
-          <div id="station">
-            <h3>End Station:</h3>
+
+    <!-- End Station Begins -->
+        <div class="col-md-6">
+       
+
+             <form action="/directions" method="POST">
+              <h3>End Stations:</h3>
         <% @final_end_stations.each do |end_station| %>
-             <input type="radio" name="[locations][end_station]" value="<%= end_station[0].name %>"><p>Location: <%= end_station[0].name %><br>
-            <p>Station: <%= end_station[0].name %>
-            <p>Available Docks: <%= end_station[1]['availableDocks'] %></p>
-            <p>Distance from end location: <%= end_station[0].distance.round(2) %> miles</p>
-          </div>
-          <% end %>
-        </td>
 
-        <td>
-           
-            <input type="hidden" name="[locations][start]" value="<%= @start.address %>" />
-            <input type="hidden" name="[locations][end]" value="<%= @end.address %>" />
- <!--            <input type="hidden" name="[locations][start_station]" value="<%= @start_stations.name %>" />
-            <input type="hidden" name="[locations][end_station]" value="<%= @end_stations.name %>" /> -->
-            <input type="submit" value="Get Directions">
-            </form>
-        </td>
-      </tr>
+        <div class="panel panel-default">
+              <!-- Default panel contents -->
+              <div class="panel-heading"><input type="radio" name="[locations][end_station]" value="<%= end_station[0].name %>">&nbsp; Location: <%= end_station[0].name %>
+              </div>
+              <div class="panel-body">
+             
 
+              <!-- Table -->
+              <table class="table">
+                <tr>
+                  <td>Available Docks:</td>
+                  <td><%= end_station[1]['availableDocks'] %></td>
+                  
+                </tr>
+                <tr>
+                  <td>Distance from end location:</td>
+                  <td><%= end_station[0].distance.round(2) %> miles</td>
+                </tr>
+              </table>
+           </div><!-- end panel body -->
+        </div><!-- end panel -->
 
-
+        <% end %>
+    </div><!-- end col-sm-4 -->
+</div><!--end of row-->
+<div class="row">
+  <div class="col-md-12">
+    <input type="hidden" name="[locations][start]" value="<%= @start.address %>" />
+    <input type="hidden" name="[locations][end]" value="<%= @end.address %>" />
+     <button type="submit" value="Get Directions" class="btn btn-primary" style="display:block; width: 100%; margin-bottom: 200px;">Get Directions</button>
+    <!-- <input type="submit" > -->
+    </form>
+  </div>
 </div>
+
+
 
  
 

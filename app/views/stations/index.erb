@@ -1,27 +1,3 @@
-
-<h1>Citi Bike Stations</h1>
-<form action="/results" method="post">
-    <label for="start">Enter Start Location</label>
-    <input type="text" id="start" name="start">
-    <label for="end">Enter End Location</label>
-    <input type="text" id="end" name="end">
-    <input type="submit" value="submit">
-</form>
-
-
-<form action="/search" method="post">
-    <label for="location">Enter Your Location</label>
-    <input type="text" id="location" name="location">
-    <input type="submit" value="submit">
-</form>
-
-
-<ol>
-<% @stations.each do |station| %>
-  <li><a href="/stations/<%= station.id %>"><%= station.name %></a></li>
-<% end %>
-</ol>
-
 <div class="jumbotron">
   <h1>Get Citi Bike Directions!</h1>
   <p class="lead text-primary">
@@ -55,6 +31,40 @@
 
 
 </div>
+
+
+
+
+
+<div class="jumbotron">
+  <h1>Find Stations Near You!</h1>
+  <p class="lead text-primary">
+    Input your start to see nearest stations.
+  </p>
+
+
+
+<form class="form-horizontal" action="/search" method="post">
+   <fieldset>
+    <div class="form-group">
+      <label for="location" class="col-lg-2 control-label">Enter Your Location</label>
+    <div class="col-lg-10">
+      <input type="text" class="form-control" id="location" name="location">
+    </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+   </fieldset>
+</form>
+
+
+
+</div>
+
 
 
 

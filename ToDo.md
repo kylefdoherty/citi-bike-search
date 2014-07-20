@@ -1,7 +1,7 @@
 Technical Problems 
 
 ######
-- change form to have radio buttons
+
 
 - add static map for search page
 
@@ -22,39 +22,27 @@ Technical Problems
 
 Front End 
 
-- index 
-  - search box
-  - seach for nearest stations 
+##serach page
+- search page style results - 2 rows of 3
 
-- results page 
-  - styling the results 
+- nav bar
 
-- styling the map & directions 
+##index page
+- clean up 
+
+
+##directions page 
+- radio buttons 
+
+- clean up  
 
 Presentation 
 
-- intro problem
+- code part 
 
-- show it 
+- code org and tech used visual 
 
-- all the gems, api, etc we used 
-  - citi bike json feed & httparty 
-  - geocoder gem 
-  - google maps api 
-  - rickshaw?
-
-- challenges 
-  - getting historical data 
-  - google api 
-  - geocoder 
-  - finding time with labs, etc.
-
-- next steps 
-  - turn into rails app
-  - user favorite stations dashboard 
-  - predictions 
-  - adding testing 
-  - more efficiency - db, caching 
+- practice & cleanup slides more 
 
 
 

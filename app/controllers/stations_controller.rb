@@ -1,5 +1,7 @@
 require 'pry'
+require 'gon-sinatra'
 class StationsController < ApplicationController
+  register Gon::Sinatra
 
   get '/' do 
     @stations = Station.all
@@ -61,12 +63,18 @@ class StationsController < ApplicationController
 
     if params[:location].present?
         @final_stations = []
+        @station_coors = []
         @stations = Station.near(@location, 1)
+        station_letters = ["A", "B","C","D","E"].to_enum
         @stations.each do |station|
+          station_letter = station_letters.next
           @station_data = StationRefresher.current_station_data(station.station_id)
-          @final_stations << [station, @station_data]
-          break if @final_stations.length >= 10
+          @final_stations << [station, @station_data, station_letter]
+          @station_coors << [@station_data["latitude"], @station_data["longitude"]]
+          break if @final_stations.length >= 5
         end   
+        gon.station_coors = @station_coors
+        gon.search_location = @location
     else
         redirect to("/index") #give an error that you must give a start location 
     end

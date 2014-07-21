@@ -13,9 +13,11 @@
 
         <div class="panel panel-default">
               <!-- Default panel contents -->
-              <div class="panel-heading"><input type="radio" name="[locations][start_station]" value="<%= start_station[0].name %>">&nbsp; Location: <%= start_station[0].name %>
+              <div class="panel-heading"><input type="radio" name="[locations][start_station]" value="<%= "#{start_station[0].latitude} #{start_station[0].longitude}" %>">&nbsp; Location: <%= start_station[0].name %>
               </div>
               <div class="panel-body">
+
+
              
 
               <!-- Table -->
@@ -47,7 +49,7 @@
 
         <div class="panel panel-default">
               <!-- Default panel contents -->
-              <div class="panel-heading"><input type="radio" name="[locations][end_station]" value="<%= end_station[0].name %>">&nbsp; Location: <%= end_station[0].name %>
+              <div class="panel-heading"><input type="radio" name="[locations][end_station]" value="<%= "#{end_station[0].latitude} #{end_station[0].longitude}" %>">&nbsp; Location: <%= end_station[0].name %>
               </div>
               <div class="panel-body">
              

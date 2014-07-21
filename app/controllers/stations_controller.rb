@@ -52,8 +52,9 @@ class StationsController < ApplicationController
   post '/directions' do 
     @start = params[:locations][:start]
     @end = params[:locations][:end]
-    @start_station = params[:locations][:start_station]
-    @end_station = params[:locations][:end_station]
+    @start_station = params[:locations][:start_station].split(" ")
+    @end_station = params[:locations][:end_station].split(" ")
+    # binding.pry
 
     # erb :'stations/directions'
     erb :'stations/directions', :layout => :directions_layout

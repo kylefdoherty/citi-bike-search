@@ -116,19 +116,20 @@
 
         var route1 = {
           origin: '<%= @start %>',
-          destination: '<%= @start_station %>',
+          destination: new google.maps.LatLng('<%= @start_station[0] %>', '<%= @start_station[1] %>'),
           travelMode: google.maps.TravelMode.WALKING 
+
         };
         
         var route2 = {
-          origin: '<%= @start_station %>',
-          destination: '<%= @end_station %>',
+          origin: new google.maps.LatLng('<%= @start_station[0] %>', '<%= @start_station[1] %>'),
+          destination: new google.maps.LatLng('<%= @end_station[0] %>', '<%= @end_station[1] %>'),
           travelMode: google.maps.TravelMode.BICYCLING 
         };
         
         
         var route3 = {
-          origin: '<%= @end_station %>',
+          origin: new google.maps.LatLng('<%= @end_station[0] %>', '<%= @end_station[1] %>'),
           destination: '<%= @end %>',
           travelMode: google.maps.TravelMode.WALKING 
         };

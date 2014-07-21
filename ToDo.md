@@ -1,40 +1,11 @@
-Technical Problems 
-
-######
-
-
-- add static map for search page
-
-- handle errors for incorrect inputs 
-
-- what if no stations within certain radius 
-
-
-
-
-#########
-- logic for no bikes 
-
-- logic bike stations 
-
-
-
+- LAUNCH!!!!!
 
 Front End 
 
-##serach page
-- search page style results - 2 rows of 3
+- make font larger
 
-- nav bar
+- change color scheme of bootstrap template?
 
-##index page
-- clean up 
-
-
-##directions page 
-- radio buttons 
-
-- clean up  
 
 Presentation 
 
@@ -44,6 +15,7 @@ Presentation
 
 - practice & cleanup slides more 
 
+- practice!!!
 
 
 
@@ -52,6 +24,13 @@ Presentation
 
 
 
+Technical Problems 
+
+######
+
+- handle errors for incorrect inputs 
+
+- what if no stations within certain radius
 
 
 - move as much of the controller logic into the the model  

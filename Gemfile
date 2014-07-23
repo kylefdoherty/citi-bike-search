@@ -12,6 +12,7 @@ gem 'pry'
 gem 'httparty'
 gem "geocoder"
 gem "gon-sinatra"
+gem "rack-flash3"
 
 group :test do
   gem 'rspec'

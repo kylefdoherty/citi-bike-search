@@ -1,5 +1,10 @@
 <h1>Stations Nearest Your Start and End Locations</h1>
 <!-- <h2>Start: <%= @start.address %> &amp End: <%= @end.address %></h2>  -->
+<% if flash[:notice] %>
+  <div id='flash' class="error alert alert-danger" role="alert">
+       <%= flash[:notice] %>
+  </div>
+<% end %>
 
   <div class="row">
 
@@ -13,7 +18,7 @@
 
         <div class="panel panel-default">
               <!-- Default panel contents -->
-              <div class="panel-heading"><input type="radio" name="[locations][start_station]" value="<%= "#{start_station[0].latitude} #{start_station[0].longitude}" %>">&nbsp; Location: <%= start_station[0].name %>
+              <div class="panel-heading"><input type="radio" name="[locations][start_station]" value="<%= "#{start_station[0].latitude} #{start_station[0].longitude}" %>" required>&nbsp; Location: <%= start_station[0].name %>
               </div>
               <div class="panel-body">
 
@@ -49,7 +54,7 @@
 
         <div class="panel panel-default">
               <!-- Default panel contents -->
-              <div class="panel-heading"><input type="radio" name="[locations][end_station]" value="<%= "#{end_station[0].latitude} #{end_station[0].longitude}" %>">&nbsp; Location: <%= end_station[0].name %>
+              <div class="panel-heading"><input type="radio" name="[locations][end_station]" value="<%= "#{end_station[0].latitude} #{end_station[0].longitude}" %>" required>&nbsp; Location: <%= end_station[0].name %>
               </div>
               <div class="panel-body">
              

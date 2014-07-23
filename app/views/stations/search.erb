@@ -52,7 +52,7 @@
       });
     }
 
-    }
+    } //close initialize
 
     google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -60,7 +60,7 @@
   </head>
   <body>
   <div class="container">
-  <h1 style="margin-bottom: 50px;">Stations Nearest <%= @location.address %></h1>
+  <h1 style="margin-bottom: 50px;">Stations Nearest <%=h @location.address %></h1>
 
     <div class="jumbotron">
       <div id="map-canvas"></div>

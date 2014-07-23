@@ -6,6 +6,11 @@ class StationsController < ApplicationController
   register Gon::Sinatra
   enable :sessions
   use Rack::Flash
+
+  helpers do
+    include Rack::Utils
+    alias_method :h, :escape_html
+  end
   
 
   get '/' do 
@@ -106,16 +111,5 @@ class StationsController < ApplicationController
 
     erb :'stations/search', :layout => :search_layout
   end
-
-
-
-
-
-
-
-
-
-
-
 
 end
